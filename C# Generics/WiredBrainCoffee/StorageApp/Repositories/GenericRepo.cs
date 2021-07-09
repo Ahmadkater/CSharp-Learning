@@ -6,7 +6,7 @@ namespace WiredBrainCoffee.StorageApp.GenericRepo
 {
     public class GenericRepo<T>
     {
-        private readonly List<T> _entities = new List<T>();
+        protected readonly List<T> _entities = new List<T>();
 
         public void Add(T e)
         {
@@ -20,6 +20,14 @@ namespace WiredBrainCoffee.StorageApp.GenericRepo
             {
                 System.Console.WriteLine(_);
             }
+        }
+    }
+
+    public class GenericRepoWithRemove<T> : GenericRepo<T> 
+    {
+        public void Remove(T e)
+        {
+            _entities.Remove(e) ;
         }
     }
 }
