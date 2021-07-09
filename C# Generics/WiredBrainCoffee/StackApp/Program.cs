@@ -1,16 +1,18 @@
-﻿namespace WiredBrainCoffee.StackApp
+﻿using System;
+
+namespace WiredBrainCoffee.StackApp
 {
     class Program
     {
-        static void Main(string[] args)        
+        static void Main(string[] args)
         {
             doubleStack();
             stringStack();
         }
 
-        public static void doubleStack()       
+        public static void doubleStack()
         {
-            var s = new SimpleStackdouble();   
+            var s = new SimpleStack<double>();
             s.Push(25.0);
             s.Push(75.0);
             s.Push(100.0);
@@ -23,9 +25,9 @@
             }
         }
 
-        public static void stringStack()       
+        public static void stringStack()
         {
-            var s = new SimpleStackString();   
+            var s = new SimpleStack<string>();
             s.Push("p1");
             s.Push("p2");
             s.Push("p3");
