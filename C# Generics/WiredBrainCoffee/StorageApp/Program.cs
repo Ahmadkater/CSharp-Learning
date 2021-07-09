@@ -1,5 +1,5 @@
 ﻿using System;
-using WiredBrainCoffee.StorageApp.EmployeeRepo;
+using WiredBrainCoffee.StorageApp.GenericRepo;
 using WiredBrainCoffee.StorageApp.Entities;
 
 namespace StorageApp
@@ -8,11 +8,18 @@ namespace StorageApp
     {
         static void Main(string[] args)
         {
-            EmployeeRepo r = new EmployeeRepo();
-            r.Add(new Employee{FirstName = "e1" });
-            r.Add(new Employee{FirstName = "e2" });
-            r.Add(new Employee{FirstName = "e3" });
-            r.Save();
+            var employeeRepo = new GenericRepo<Employee>();
+            employeeRepo.Add(new Employee { FirstName = "e1" });
+            employeeRepo.Add(new Employee { FirstName = "e2" });
+            employeeRepo.Add(new Employee { FirstName = "e3" });
+            employeeRepo.Save();
+
+            var orgRepo = new GenericRepo<Organization>();
+            orgRepo.Add(new Organization { Name = "Org1" });
+            orgRepo.Add(new Organization { Name = "Org2" });
+            orgRepo.Add(new Organization { Name = "Org3" });
+            orgRepo.Save();
+            
         }
     }
 }

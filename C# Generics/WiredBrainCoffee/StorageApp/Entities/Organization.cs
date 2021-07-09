@@ -7,7 +7,7 @@ namespace WiredBrainCoffee.StorageApp.Entities
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public override string ToString() => $"Id:{Id}, tName:{FirstName} ";
+        public override string ToString() => $"Id:{Id}, Name:{Name} ";
     }
 
 }
