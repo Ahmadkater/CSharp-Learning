@@ -1,18 +1,20 @@
+using System ; 
+
 namespace WiredBrainCoffee.StackApp
 {
-    public class SimpleStack 
+    public class SimpleStack
     {
-        private readonly double[] _items;
+        private readonly Object[] _items;
         private int _currentIndex = -1 ;
 
         public int count => _currentIndex + 1 ;
 
-        public SimpleStack() => _items = new double[10] ; 
+        public SimpleStack() => _items = new Object[10] ;
 
-        public void Push(double item) => _items[++_currentIndex] = item ;
+        public void Push(Object item) => _items[++_currentIndex] = item ;
 
-        public double Pop() => 
+        public Object Pop() =>
             _items [_currentIndex --] ;
-        
+
     }
 }
