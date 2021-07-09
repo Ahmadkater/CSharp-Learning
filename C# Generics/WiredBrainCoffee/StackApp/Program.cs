@@ -10,7 +10,7 @@
 
         public static void doubleStack()       
         {
-            var s = new SimpleStack();
+            var s = new SimpleStackdouble();   
             s.Push(25.0);
             s.Push(75.0);
             s.Push(100.0);
@@ -25,7 +25,7 @@
 
         public static void stringStack()       
         {
-            var s = new SimpleStack();
+            var s = new SimpleStackString();   
             s.Push("p1");
             s.Push("p2");
             s.Push("p3");
