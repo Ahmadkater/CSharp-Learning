@@ -24,7 +24,7 @@ namespace WiredBrainCoffee.StorageApp.GenericRepo
         }
     }
 
-    public class GenericRepoWithRemove<T,K> : GenericRepo<T,K>
+    public class GenericRepoWithRemove<T> : GenericRepo<T,int>
     {
         public void Remove(T e)
         {

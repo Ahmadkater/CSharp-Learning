@@ -8,7 +8,7 @@ namespace StorageApp
     {
         static void Main(string[] args)
         {
-            var employeeRepo = new GenericRepoWithRemove<Employee,int>();
+            var employeeRepo = new GenericRepoWithRemove<Employee>();
             employeeRepo.key = 1 ;
             employeeRepo.Add(new Employee { FirstName = "e1" });
             var e2 = new Employee { FirstName = "e2" } ;
