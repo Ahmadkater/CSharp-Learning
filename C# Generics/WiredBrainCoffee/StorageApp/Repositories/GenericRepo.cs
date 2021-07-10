@@ -4,8 +4,9 @@ using WiredBrainCoffee.StorageApp.Entities;
 
 namespace WiredBrainCoffee.StorageApp.GenericRepo
 {
-    public class GenericRepo<T>
+    public class GenericRepo<T,Tkey>
     {
+        public Tkey key { get; set; }
         protected readonly List<T> _entities = new List<T>();
 
         public void Add(T e)
@@ -23,7 +24,7 @@ namespace WiredBrainCoffee.StorageApp.GenericRepo
         }
     }
 
-    public class GenericRepoWithRemove<T> : GenericRepo<T> 
+    public class GenericRepoWithRemove<T,K> : GenericRepo<T,K>
     {
         public void Remove(T e)
         {
