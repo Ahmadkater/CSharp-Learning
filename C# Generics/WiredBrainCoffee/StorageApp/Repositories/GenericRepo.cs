@@ -5,9 +5,13 @@ using WiredBrainCoffee.StorageApp.Entities;
 
 namespace WiredBrainCoffee.StorageApp.GenericRepo
 {
-    public class GenericRepo<T> where T:Entity
+    public class GenericRepo<T> where T:IEntity , new()
     {
         private readonly List<T> _entities = new List<T>();
+        public T createItem()
+        {
+            return new T();
+        }
 
         public void Add(T e)
         {

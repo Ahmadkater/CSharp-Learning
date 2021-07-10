@@ -15,7 +15,11 @@ namespace StorageApp
             employeeRepo.Add(new Employee { FirstName = "e3" });
             employeeRepo.Remove(e2);
 
-            System.Console.WriteLine( employeeRepo.GetById(3) ) ;
+            var instance = employeeRepo.createItem() ;
+            instance.FirstName = "e4" ;
+            employeeRepo.Add(instance);
+
+            employeeRepo.Save();
 
             var orgRepo = new GenericRepo<Organization>();
             orgRepo.Add(new Organization { Name = "Org1" });
@@ -23,7 +27,6 @@ namespace StorageApp
             orgRepo.Add(new Organization { Name = "Org3" });
 
             System.Console.WriteLine( orgRepo.GetById(2) ) ;
-
             
         }
     }
