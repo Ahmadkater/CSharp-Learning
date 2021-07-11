@@ -6,15 +6,14 @@ using System ;
 
 namespace WiredBrainCoffee.StorageApp.Repo
 {
-    public delegate void itemAdded<T> (T e); 
     public class SqlRepo<T> : IRepo<T> where T:class , IEntity
     {
         private readonly DbContext _dbContext ;
-        private readonly itemAdded<T> _itemAddedCallBack ;
+        private readonly Action<T> _itemAddedCallBack ;
         private readonly DbSet<T> _dbSet;
         
 
-        public SqlRepo(DbContext dbContext , itemAdded<T> itemAddedCallBack)
+        public SqlRepo(DbContext dbContext , Action<T> itemAddedCallBack)
         {
             _dbContext = dbContext ;
             _itemAddedCallBack = itemAddedCallBack ;

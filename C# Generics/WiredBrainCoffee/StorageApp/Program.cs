@@ -11,9 +11,7 @@ namespace StorageApp
         {
             var db = new StorageAppDbContext();
             
-            var itemAddedDelegate = new itemAdded<Employee>(EmployeeAdded) ;
-
-            var employeeRepo = new SqlRepo<Employee>(db , itemAddedDelegate);
+            var employeeRepo = new SqlRepo<Employee>(db , EmployeeAdded);
 
             GenerateEmployees(employeeRepo);
 
