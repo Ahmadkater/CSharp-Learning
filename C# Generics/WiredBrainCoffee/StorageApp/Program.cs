@@ -10,9 +10,11 @@ namespace StorageApp
         static void Main(string[] args)
         {
             var db = new StorageAppDbContext();
-            
-            var employeeRepo = new SqlRepo<Employee>(db , EmployeeAdded);
 
+            var employeeRepo = new SqlRepo<Employee>(db);
+            
+            employeeRepo.itemAddedCallBack += EmployeeAdded ;
+            
             GenerateEmployees(employeeRepo);
 
             GetEmployeeById(employeeRepo, 2);
@@ -30,7 +32,7 @@ namespace StorageApp
 
         }
 
-        private static void EmployeeAdded(Employee e)
+        private static void EmployeeAdded(Object sender , Employee e)
         {
             System.Console.WriteLine($"Employee added => {e}");
         }

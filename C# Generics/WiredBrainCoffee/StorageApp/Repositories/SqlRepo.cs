@@ -9,21 +9,20 @@ namespace WiredBrainCoffee.StorageApp.Repo
     public class SqlRepo<T> : IRepo<T> where T:class , IEntity
     {
         private readonly DbContext _dbContext ;
-        private readonly Action<T> _itemAddedCallBack ;
         private readonly DbSet<T> _dbSet;
         
+        public  event EventHandler<T> itemAddedCallBack ;
 
-        public SqlRepo(DbContext dbContext , Action<T> itemAddedCallBack)
+        public SqlRepo(DbContext dbContext)
         {
             _dbContext = dbContext ;
-            _itemAddedCallBack = itemAddedCallBack ;
             _dbSet = _dbContext.Set<T>() ;
         }
 
         public void Add(T e)
         {
             _dbSet.Add(e);
-            _itemAddedCallBack.Invoke(e);
+            itemAddedCallBack.Invoke(this , e);
         }
 
         public void Save()
