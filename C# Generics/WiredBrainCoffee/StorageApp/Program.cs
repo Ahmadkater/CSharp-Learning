@@ -26,7 +26,7 @@ namespace StorageApp
 
             GenerateOrganisations(orgRepo);
 
-            writeAllToConsole(orgRepo);            
+            writeAllToConsole(orgRepo);
 
         }
 
@@ -47,7 +47,14 @@ namespace StorageApp
                 new Manager { FirstName = "m2" }
             };
 
+            var mgrClone = mgs[0].copyEntity();
             mangerRepo.addBatch(mgs);
+            if (mgrClone != null)
+            {
+                mgrClone.FirstName += "_Clone";
+                mangerRepo.Add(mgrClone);
+            }
+            mangerRepo.Save();
         }
 
         private static void GenerateEmployees(IRepo<Employee> employeeRepo)
@@ -66,8 +73,8 @@ namespace StorageApp
 
             };
 
-            employeeRepo.addBatch<Employee>(emps) ;
-            RepoExtensions.addBatch(employeeRepo , emps2) ;
+            employeeRepo.addBatch<Employee>(emps);
+            RepoExtensions.addBatch(employeeRepo, emps2);
         }
 
         private static void GenerateOrganisations(IRepo<Organization> orgRepo)
@@ -79,8 +86,8 @@ namespace StorageApp
                 new Organization { Name = "Org3" }
             };
 
-            RepoExtensions.addBatch<Organization>(orgRepo , orgs);
-            
+            RepoExtensions.addBatch<Organization>(orgRepo, orgs);
+
         }
 
         private static void GetEmployeeById(IRepo<Employee> er, int id)
