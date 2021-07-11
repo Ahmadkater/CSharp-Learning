@@ -41,17 +41,33 @@ namespace StorageApp
 
         private static void GenerateMangers(IWriteRepo<Manager> mangerRepo)
         {
-            mangerRepo.Add(new Manager { FirstName = "m1" });
-            mangerRepo.Add(new Manager { FirstName = "m2" });
-            mangerRepo.Save();
+            var mgs = new Manager[]
+            {
+                new Manager { FirstName = "m1" },
+                new Manager { FirstName = "m2" }
+            };
+
+            addBatch(mangerRepo,mgs);
         }
 
         private static void GenerateEmployees(IRepo<Employee> employeeRepo)
         {
-            employeeRepo.Add(new Employee { FirstName = "e1" });
-            employeeRepo.Add(new Employee { FirstName = "e2" });
-            employeeRepo.Add(new Employee { FirstName = "e3" });
-            employeeRepo.Save();
+            var emps = new Employee[]
+            {
+                new Employee { FirstName = "e1" },
+                new Employee { FirstName = "e2" },
+
+            };
+
+            var emps2 = new Employee[]
+            {
+                new Employee { FirstName = "e3" },
+                new Employee { FirstName = "e4" },
+
+            };
+
+            addBatch<Employee>(employeeRepo , emps) ;
+            addBatch(employeeRepo , emps2) ;
         }
 
         private static void GenerateOrganisations(IRepo<Organization> orgRepo)
@@ -63,19 +79,19 @@ namespace StorageApp
                 new Organization { Name = "Org3" }
             };
 
-            addBatch(orgRepo , orgs );
+            addBatch(orgRepo , orgs);
             
         }
 
-        private static void addBatch(IRepo<Organization> orgRepo, Organization[] orgs)
+        private static void addBatch<T> (IWriteRepo<T> repo , T[] entities)
         {
-            foreach (var o in orgs)
+            foreach (var e in entities)
             {
-                orgRepo.Add(o);
+                repo.Add(e);
 
             }
-            
-            orgRepo.Save();
+
+            repo.Save();
         }
 
         private static void GetEmployeeById(IRepo<Employee> er, int id)
