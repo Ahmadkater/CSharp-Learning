@@ -11,7 +11,7 @@ namespace StorageApp
         {
             var db = new StorageAppDbContext();
             
-            var itemAddedDelegate = new itemAdded(EmployeeAdded) ;
+            var itemAddedDelegate = new itemAdded<Employee>(EmployeeAdded) ;
 
             var employeeRepo = new SqlRepo<Employee>(db , itemAddedDelegate);
 
@@ -32,10 +32,9 @@ namespace StorageApp
 
         }
 
-        private static void EmployeeAdded(object e)
+        private static void EmployeeAdded(Employee e)
         {
-            var employee = (Employee) e ;
-            System.Console.WriteLine($"Employee added => {employee}");
+            System.Console.WriteLine($"Employee added => {e}");
         }
 
         private static void writeAllToConsole(IReadRepo<IEntity> repo)
