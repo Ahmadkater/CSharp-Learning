@@ -47,7 +47,7 @@ namespace StorageApp
                 new Manager { FirstName = "m2" }
             };
 
-            addBatch(mangerRepo,mgs);
+            mangerRepo.addBatch(mgs);
         }
 
         private static void GenerateEmployees(IRepo<Employee> employeeRepo)
@@ -66,8 +66,8 @@ namespace StorageApp
 
             };
 
-            addBatch<Employee>(employeeRepo , emps) ;
-            addBatch(employeeRepo , emps2) ;
+            employeeRepo.addBatch<Employee>(emps) ;
+            RepoExtensions.addBatch(employeeRepo , emps2) ;
         }
 
         private static void GenerateOrganisations(IRepo<Organization> orgRepo)
@@ -79,19 +79,8 @@ namespace StorageApp
                 new Organization { Name = "Org3" }
             };
 
-            addBatch(orgRepo , orgs);
+            RepoExtensions.addBatch<Organization>(orgRepo , orgs);
             
-        }
-
-        private static void addBatch<T> (IWriteRepo<T> repo , T[] entities)
-        {
-            foreach (var e in entities)
-            {
-                repo.Add(e);
-
-            }
-
-            repo.Save();
         }
 
         private static void GetEmployeeById(IRepo<Employee> er, int id)
