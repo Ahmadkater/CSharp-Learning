@@ -1,6 +1,7 @@
 ﻿using System;
-using WiredBrainCoffee.StorageApp.GenericRepo;
+using WiredBrainCoffee.StorageApp.Repo;
 using WiredBrainCoffee.StorageApp.Entities;
+using WiredBrainCoffee.StorageApp.Data;
 
 namespace StorageApp
 {
@@ -8,26 +9,54 @@ namespace StorageApp
     {
         static void Main(string[] args)
         {
-            var employeeRepo = new GenericRepo<Employee>();
+            var db = new StorageAppDbContext();
+
+            var employeeRepo = new SqlRepo<Employee>(db);
+
+            GenerateEmployees(employeeRepo);
+
+            GetEmployeeById(employeeRepo , 2) ;
+
+            writeAllToConsole(employeeRepo);
+
+            var orgRepo = new ListRepo<Organization>();
+
+            GenerateOrganisations(orgRepo);
+
+            
+            
+        }
+
+        private static void writeAllToConsole(IRepo<Employee> employeeRepo)
+        {
+            var emps = employeeRepo.GetAll();
+            foreach (var e in emps)
+            {
+                System.Console.WriteLine(e);
+            }
+        }
+
+        private static void GenerateEmployees(IRepo<Employee> employeeRepo)
+        {
             employeeRepo.Add(new Employee { FirstName = "e1" });
-            var e2 = new Employee { FirstName = "e2" } ;
-            employeeRepo.Add(e2);
+            employeeRepo.Add(new Employee { FirstName = "e2" });
             employeeRepo.Add(new Employee { FirstName = "e3" });
-            employeeRepo.Remove(e2);
-
-            var instance = employeeRepo.createItem() ;
-            instance.FirstName = "e4" ;
-            employeeRepo.Add(instance);
-
             employeeRepo.Save();
+        }
 
-            var orgRepo = new GenericRepo<Organization>();
+        private static void GenerateOrganisations(IRepo<Organization> orgRepo)
+        {
             orgRepo.Add(new Organization { Name = "Org1" });
             orgRepo.Add(new Organization { Name = "Org2" });
             orgRepo.Add(new Organization { Name = "Org3" });
-
-            System.Console.WriteLine( orgRepo.GetById(2) ) ;
-            
+            orgRepo.Save();
         }
+
+        private static void GetEmployeeById(IRepo<Employee> er , int id)
+        {
+            var e = er.GetById(id);
+            System.Console.WriteLine(e.FirstName);
+        }
+
     }
 }

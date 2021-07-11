@@ -1,18 +1,13 @@
-using System ;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using WiredBrainCoffee.StorageApp.Entities;
 
-namespace WiredBrainCoffee.StorageApp.GenericRepo
+namespace WiredBrainCoffee.StorageApp.Repo
 {
-    public class GenericRepo<T> where T:IEntity , new()
+    public class ListRepo<T> : IRepo<T> where T:class , IEntity
     {
         private readonly List<T> _entities = new List<T>();
-        public T createItem()
-        {
-            return new T();
-        }
-
         public void Add(T e)
         {
             e.Id = _entities.Count + 1 ;
@@ -38,6 +33,9 @@ namespace WiredBrainCoffee.StorageApp.GenericRepo
             return _entities.Single(item => item.Id == id);
         }
 
+        public IEnumerable<T> GetAll()
+        {
+            return _entities.ToList() ;
+        }
     }
-
 }
