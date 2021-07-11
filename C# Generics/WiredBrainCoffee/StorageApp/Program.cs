@@ -56,9 +56,25 @@ namespace StorageApp
 
         private static void GenerateOrganisations(IRepo<Organization> orgRepo)
         {
-            orgRepo.Add(new Organization { Name = "Org1" });
-            orgRepo.Add(new Organization { Name = "Org2" });
-            orgRepo.Add(new Organization { Name = "Org3" });
+            var orgs = new Organization[]
+            {
+                new Organization { Name = "Org1" },
+                new Organization { Name = "Org2" },
+                new Organization { Name = "Org3" }
+            };
+
+            addBatch(orgRepo , orgs );
+            
+        }
+
+        private static void addBatch(IRepo<Organization> orgRepo, Organization[] orgs)
+        {
+            foreach (var o in orgs)
+            {
+                orgRepo.Add(o);
+
+            }
+            
             orgRepo.Save();
         }
 
