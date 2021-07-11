@@ -10,8 +10,10 @@ namespace StorageApp
         static void Main(string[] args)
         {
             var db = new StorageAppDbContext();
+            
+            var itemAddedDelegate = new itemAdded(EmployeeAdded) ;
 
-            var employeeRepo = new SqlRepo<Employee>(db);
+            var employeeRepo = new SqlRepo<Employee>(db , itemAddedDelegate);
 
             GenerateEmployees(employeeRepo);
 
@@ -28,6 +30,12 @@ namespace StorageApp
 
             writeAllToConsole(orgRepo);
 
+        }
+
+        private static void EmployeeAdded(object e)
+        {
+            var employee = (Employee) e ;
+            System.Console.WriteLine($"Employee added => {employee}");
         }
 
         private static void writeAllToConsole(IReadRepo<IEntity> repo)
