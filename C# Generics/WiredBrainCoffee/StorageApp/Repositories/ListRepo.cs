@@ -17,10 +17,7 @@ namespace WiredBrainCoffee.StorageApp.Repo
 
         public void Save()
         {
-            foreach (var _ in _entities)
-            {
-                System.Console.WriteLine(_);
-            }
+            // Every thing is saved already
         }
 
         public void Remove(T e)

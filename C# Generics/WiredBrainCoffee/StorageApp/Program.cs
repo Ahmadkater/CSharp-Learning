@@ -15,21 +15,22 @@ namespace StorageApp
 
             GenerateEmployees(employeeRepo);
 
-            GetEmployeeById(employeeRepo , 2) ;
-
             writeAllToConsole(employeeRepo);
+
+            GetEmployeeById(employeeRepo, 2);
 
             var orgRepo = new ListRepo<Organization>();
 
             GenerateOrganisations(orgRepo);
 
-            
-            
+            writeAllToConsole(orgRepo);
+
+
         }
 
-        private static void writeAllToConsole(IRepo<Employee> employeeRepo)
+        private static void writeAllToConsole(IReadRepo<IEntity> repo)
         {
-            var emps = employeeRepo.GetAll();
+            var emps = repo.GetAll();
             foreach (var e in emps)
             {
                 System.Console.WriteLine(e);
@@ -52,10 +53,10 @@ namespace StorageApp
             orgRepo.Save();
         }
 
-        private static void GetEmployeeById(IRepo<Employee> er , int id)
+        private static void GetEmployeeById(IRepo<Employee> er, int id)
         {
             var e = er.GetById(id);
-            System.Console.WriteLine(e.FirstName);
+            System.Console.WriteLine($"Found Id {id} : {e.FirstName}");
         }
 
     }
