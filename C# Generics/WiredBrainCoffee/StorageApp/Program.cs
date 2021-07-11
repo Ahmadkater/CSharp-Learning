@@ -15,16 +15,18 @@ namespace StorageApp
 
             GenerateEmployees(employeeRepo);
 
+            GetEmployeeById(employeeRepo, 2);
+
+            GenerateMangers(employeeRepo);
+
             writeAllToConsole(employeeRepo);
 
-            GetEmployeeById(employeeRepo, 2);
 
             var orgRepo = new ListRepo<Organization>();
 
             GenerateOrganisations(orgRepo);
 
-            writeAllToConsole(orgRepo);
-
+            writeAllToConsole(orgRepo);            
 
         }
 
@@ -35,6 +37,13 @@ namespace StorageApp
             {
                 System.Console.WriteLine(e);
             }
+        }
+
+        private static void GenerateMangers(IWriteRepo<Manager> mangerRepo)
+        {
+            mangerRepo.Add(new Manager { FirstName = "m1" });
+            mangerRepo.Add(new Manager { FirstName = "m2" });
+            mangerRepo.Save();
         }
 
         private static void GenerateEmployees(IRepo<Employee> employeeRepo)

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using WiredBrainCoffee.StorageApp.Entities;
+using System ;
 
 namespace WiredBrainCoffee.StorageApp.Repo
 {
@@ -9,6 +10,7 @@ namespace WiredBrainCoffee.StorageApp.Repo
     {
         private readonly DbContext _dbContext ;
         private readonly DbSet<T> _dbSet;
+        
 
         public SqlRepo(DbContext dbContext)
         {
@@ -38,7 +40,9 @@ namespace WiredBrainCoffee.StorageApp.Repo
 
         public IEnumerable<T> GetAll()
         {
-            return _dbSet.ToList() ;
+            Func<T , int> selectedkey = (t) => t.Id ; 
+
+            return _dbSet.OrderBy(selectedkey).ToList() ;
         }
     }
 
