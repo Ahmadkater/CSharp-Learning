@@ -7,8 +7,9 @@ namespace HandlingExceptions
        
        public int Calculate(int n1 , int n2 , string operation)
        {
+           string nonNullOp = operation?? throw new ArgumentNullException(nameof(operation),"Cannot be null") ;
 
-           if (operation == "/")
+           if (nonNullOp == "/")
            {
                return Divide(n1,n2) ;
            }

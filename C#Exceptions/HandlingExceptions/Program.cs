@@ -17,16 +17,16 @@ namespace HandlingExceptions
             var n2 = int.Parse(Console.ReadLine());
 
             System.Console.WriteLine(" ");
-
+/*
             System.Console.WriteLine("Enter Operation : ");
 
             var o = Console.ReadLine() ;
 
             System.Console.WriteLine(" ");
-
+*/
             try
             {
-                System.Console.WriteLine(c.Calculate(n1,n2,o));
+                System.Console.WriteLine(c.Calculate(n1,n2,null));
             }
             catch (Exception e)
             {
