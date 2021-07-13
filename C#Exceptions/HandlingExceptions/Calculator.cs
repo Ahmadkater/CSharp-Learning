@@ -15,10 +15,13 @@ namespace HandlingExceptions
                {
                    return Divide(n1,n2) ;
                }
-               catch (DivideByZeroException)
+               catch (DivideByZeroException e)
                {
                    
-                   throw;
+                   //throw;
+                   // wrapping exceptions
+                   throw new ArithmeticException("Error Occured during Calculation" ,e);
+
                }
            }
            else
