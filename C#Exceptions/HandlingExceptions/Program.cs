@@ -26,21 +26,21 @@ namespace HandlingExceptions
 
             try
             {
-                System.Console.WriteLine(c.Calculate(n1,n2,o));
+                System.Console.WriteLine(c.Calculate(n1,n2,null));
             }
-            catch (ArgumentNullException e)
+            catch (ArgumentNullException e) when (e.ParamName == "n2") 
             {
                 
-                System.Console.WriteLine($"Operation was not provided, {e}");
+                System.Console.WriteLine($"Operation was not provided:\n {e}");
 
             }
             catch (ArgumentOutOfRangeException e)
             {
-                System.Console.WriteLine($"Operation is not supported, {e}");
+                System.Console.WriteLine($"Operation is not supported:\n {e}");
             }
             catch (Exception e)
             {
-                System.Console.WriteLine("Something Went Wrong : " + e + " .");                
+                System.Console.WriteLine("Something Went Wrong : \n" + e );                
             }
             finally
             {
