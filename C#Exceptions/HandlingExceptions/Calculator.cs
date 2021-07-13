@@ -11,7 +11,15 @@ namespace HandlingExceptions
 
            if (nonNullOp == "/")
            {
-               return Divide(n1,n2) ;
+               try
+               {
+                   return Divide(n1,n2) ;
+               }
+               catch (DivideByZeroException)
+               {
+                   
+                   throw;
+               }
            }
            else
            {
