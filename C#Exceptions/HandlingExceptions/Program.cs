@@ -6,6 +6,9 @@ namespace HandlingExceptions
     {
         static void Main(string[] args)
         {
+            // Global unhandled exception handling using appdomain
+            AppDomain currentAppDomain = AppDomain.CurrentDomain ;
+            currentAppDomain.UnhandledException += new UnhandledExceptionEventHandler(HandlingException);
             var c = new Calculator();
             
             System.Console.WriteLine("Enter 1st num : ");
@@ -47,6 +50,11 @@ namespace HandlingExceptions
                 System.Console.WriteLine("Finally Block is always executed");
             }
 
+        }
+
+        private static void HandlingException(object sender, UnhandledExceptionEventArgs e)
+        {
+            System.Console.WriteLine($"There is a problem, error ##### \n {e.ExceptionObject}" );
         }
     }
 }
