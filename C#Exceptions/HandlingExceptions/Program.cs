@@ -29,17 +29,11 @@ namespace HandlingExceptions
 
             try
             {
-                System.Console.WriteLine(c.Calculate(n1,n2,null));
+                System.Console.WriteLine(c.Calculate(n1,n2,o));
             }
-            catch (ArgumentNullException e) when (e.ParamName == "n2") 
+            catch (CalculatorException e)
             {
-                
-                System.Console.WriteLine($"Operation was not provided:\n {e}");
-
-            }
-            catch (ArgumentOutOfRangeException e)
-            {
-                System.Console.WriteLine($"Operation is not supported:\n {e}");
+                System.Console.WriteLine(e);
             }
             catch (Exception e)
             {

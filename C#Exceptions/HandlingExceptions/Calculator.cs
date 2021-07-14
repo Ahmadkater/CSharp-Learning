@@ -20,13 +20,13 @@ namespace HandlingExceptions
                    
                    //throw;
                    // wrapping exceptions
-                   throw new ArithmeticException("Error Occured during Calculation" ,e);
+                   throw new CalculatorException("Error Occured during division" ,e);
 
                }
            }
            else
            {
-               throw new ArgumentOutOfRangeException(nameof(operation) , $"Operation {operation} is an unsupported operation");
+               throw new CalculationOperationNotSupportedException(operation);
            }
        }
 
